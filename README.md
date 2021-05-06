@@ -47,6 +47,32 @@ Depending on the settings in your organization, you might not have permission to
 1. Proceed to Certificates & Secrets, and click to create a new Client Secret. Give this a description and selected expiry, and then add. You will need to copy this value also and save for later. 
 
 After these steps are successfully created, proceed to the next step.
-### Create the Power Platform Custom Connector via YAML import
+### Create the Power Platform Custom Connector via OpenAPI import
 
-In this
+In this step make sure that you have the swagger json file available and downloaded from this repository.
+
+1. Go to https://make.powerapps.com, and under Data, select Custom Connectors.
+1. Click to create a New Custom Connector, importing from an OpenAPI file or directly via URL to my repository.
+1. Give the Custom Connector a name like "Power Authentication Methods" and import.
+1. Optionally you can change the icon and description for the connector. Proceed to security after this.
+1. Now you need to paste in the client id and secret you saved earlier. You also need to add https://graph.microsoft.com as resource. The rest should already be filled in.
+1. You can now proceed to definitions and have a look at those, but they are already correctly configured from the swagger. Click to Create the Connector.
+
+### Import the PowerApp
+
+You are now ready to import the PowerApp from the zip package in this repository.
+
+1. Under Apps, click Import Canvas App.
+1. Locate the zip package "MinSikkerhetsInformasjon...zip" and select that.
+1. Next, you will se that the App "Min Sikkerhetsinformasjon" will be created as new. For the Custom Connector, you need to select to chose by import and select the Custom Connector you imported and created in the previous step.
+1. Click Import.
+1. The next steps are to open and test the App, and then share it with your organization!
+1. You will need to accept the sign in and permissions for the Custom Connector.
+
+## Supportability
+
+As this is a community solution, and provided as-is, I will have limited supportability, but you can create issues here at GitHub and I will follow up.
+
+Thanks!
+
+
