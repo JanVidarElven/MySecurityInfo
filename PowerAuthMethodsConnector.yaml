@@ -1,0 +1,157 @@
+swagger: '2.0'
+info: {title: Power Authentication Methods, description: Custom Connector for Microsoft
+    Graph Authentication Methods, version: '1.0'}
+host: graph.microsoft.com
+basePath: /
+schemes: [https]
+consumes: []
+produces: []
+paths:
+  /v1.0/me/:
+    get:
+      responses:
+        default:
+          description: default
+          schema:
+            type: object
+            properties:
+              '@odata.context': {type: string, description: '@odata.context'}
+              businessPhones:
+                type: array
+                items: {type: string}
+                description: businessPhones
+              displayName: {type: string, description: displayName}
+              givenName: {type: string, description: givenName}
+              jobTitle: {type: string, description: jobTitle}
+              mail: {type: string, description: mail}
+              mobilePhone: {type: string, description: mobilePhone}
+              officeLocation: {type: string, description: officeLocation}
+              preferredLanguage: {type: string, description: preferredLanguage}
+              surname: {type: string, description: surname}
+              userPrincipalName: {type: string, description: userPrincipalName}
+              id: {type: string, description: id}
+      summary: Me
+      operationId: Me
+      parameters: []
+      description: My Profile
+  /beta/me/authentication/methods:
+    get:
+      responses:
+        default:
+          description: default
+          schema:
+            type: object
+            properties:
+              '@odata.context': {type: string, description: '@odata.context'}
+              value:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@odata.type': {type: string, description: '@odata.type'}
+                    id: {type: string, description: id}
+                    phoneNumber: {type: string, description: phoneNumber}
+                    phoneType: {type: string, description: phoneType}
+                    smsSignInState: {type: string, description: smsSignInState}
+                    emailAddress: {type: string, description: emailAddress}
+                    temporaryAccessPass: {type: string, description: temporaryAccessPass}
+                    createdDateTime: {type: string, description: createdDateTime}
+                    startDateTime: {type: string, description: startDateTime}
+                    lifetimeInMinutes: {type: integer, format: int32, description: lifetimeInMinutes}
+                    isUsableOnce: {type: boolean, description: isUsableOnce}
+                    isUsable: {type: boolean, description: isUsable}
+                    methodUsabilityReason: {type: string, description: methodUsabilityReason}
+                    password: {type: string, description: password}
+                    creationDateTime: {type: string, description: creationDateTime}
+                    displayName: {type: string, description: displayName}
+                    aaGuid: {type: string, description: aaGuid}
+                    model: {type: string, description: model}
+                    attestationCertificates:
+                      type: array
+                      items: {type: string}
+                      description: attestationCertificates
+                    attestationLevel: {type: string, description: attestationLevel}
+                    keyStrength: {type: string, description: keyStrength}
+                    deviceTag: {type: string, description: deviceTag}
+                    phoneAppVersion: {type: string, description: phoneAppVersion}
+                description: value
+          headers:
+            Content-Type: {description: Content-Type, type: string}
+      summary: My Authentication Methods
+      operationId: MyAuthenticationMethods
+      parameters: []
+  /beta/organization:
+    get:
+      responses:
+        default:
+          description: default
+          schema:
+            type: object
+            properties:
+              '@odata.context': {type: string, description: '@odata.context'}
+              value:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id: {type: string, description: id}
+                    deletedDateTime: {type: string, description: deletedDateTime}
+                    businessPhones:
+                      type: array
+                      items: {}
+                      description: businessPhones
+                    city: {type: string, description: city}
+                    country: {type: string, description: country}
+                    countryLetterCode: {type: string, description: countryLetterCode}
+                    createdDateTime: {type: string, description: createdDateTime}
+                    displayName: {type: string, description: displayName}
+                    marketingNotificationEmails:
+                      type: array
+                      items: {}
+                      description: marketingNotificationEmails
+                    isMultipleDataLocationsForServicesEnabled: {type: string, description: isMultipleDataLocationsForServicesEnabled}
+                    onPremisesLastSyncDateTime: {type: string, description: onPremisesLastSyncDateTime}
+                    onPremisesLastPasswordSyncDateTime: {type: string, description: onPremisesLastPasswordSyncDateTime}
+                    onPremisesSyncEnabled: {type: boolean, description: onPremisesSyncEnabled}
+                    postalCode: {type: string, description: postalCode}
+                    preferredLanguage: {type: string, description: preferredLanguage}
+                    securityComplianceNotificationMails:
+                      type: array
+                      items: {}
+                      description: securityComplianceNotificationMails
+                    securityComplianceNotificationPhones:
+                      type: array
+                      items: {}
+                      description: securityComplianceNotificationPhones
+                    state: {type: string, description: state}
+                    street: {type: string, description: street}
+                    technicalNotificationMails:
+                      type: array
+                      items: {type: string}
+                      description: technicalNotificationMails
+                    tenantType: {type: string, description: tenantType}
+                    privacyProfile: {type: string, description: privacyProfile}
+                    directorySizeQuota:
+                      type: object
+                      properties:
+                        used: {type: integer, format: int32, description: used}
+                        total: {type: integer, format: int32, description: total}
+                      description: directorySizeQuota
+                description: value
+      summary: GetOrganization
+      operationId: GetOrganization
+      parameters:
+      - {name: $select, in: query, required: false, type: string}
+definitions: {}
+parameters: {}
+responses: {}
+securityDefinitions:
+  oauth2_auth:
+    type: oauth2
+    flow: accessCode
+    authorizationUrl: https://login.windows.net/common/oauth2/authorize
+    tokenUrl: https://login.windows.net/common/oauth2/authorize
+    scopes: {UserAuthenticationMethod.Read: UserAuthenticationMethod.Read}
+security:
+- oauth2_auth: [UserAuthenticationMethod.Read]
+tags: []
